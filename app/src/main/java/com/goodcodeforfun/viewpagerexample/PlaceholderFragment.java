@@ -12,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -106,7 +108,7 @@ public class PlaceholderFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
-            return getWeatherDataFromJson(result);
+            return getDataFromJson(result);
         }
 
         @Override
@@ -117,13 +119,13 @@ public class PlaceholderFragment extends Fragment {
             }
         }
 
-        private String getWeatherDataFromJson(String jsonStr) {
+        private String getDataFromJson(String jsonStr) {
 
             final String TITLE = "title";
             String title = "";
             try {
-                JSONObject forecastJson = new JSONObject(jsonStr);
-                title= forecastJson.getString(TITLE);
+                JSONObject json = new JSONObject(jsonStr);
+                title = json.getString(TITLE);
 
             } catch (JSONException e) {
                 Log.e(LOG_TAG, e.getMessage(), e);
